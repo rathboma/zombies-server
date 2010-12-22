@@ -13,7 +13,6 @@ class CreatePlayers < ActiveRecord::Migration
       t.column :kills, :int, :default => 0
       t.column :sales, :int, :default => 0
       t.column :turns_remaining, :int, :default => 0
-      t.column :turn, :boolean, :default => false
       t.column :can_act, :boolean, :default => false
       t.column :can_move, :boolean, :default => false
       t.column :game_id, :int

@@ -283,3 +283,5 @@ Completed 200 OK in 15ms (Views: 2.3ms | ActiveRecord: 0.2ms)
  FROM sqlite_master
  WHERE type = 'table' AND NOT name = 'sqlite_sequence'
   [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[36mGame Load (1.1ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
