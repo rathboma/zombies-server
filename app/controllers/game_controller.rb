@@ -13,7 +13,7 @@ class GameController < ApplicationController
   
   
   def join
-    g = Game.waiting.first()
+    g = Game.waiting.last()
     g = Game.new_with_game_board if !g
     g.save!
     @p = Player.new(:name => params[:name])

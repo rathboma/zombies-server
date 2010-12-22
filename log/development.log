@@ -221,3 +221,65 @@ Started GET "/get_turn/DIIXLSGHGYLXLOND" for 127.0.0.1 at Wed Dec 22 15:29:22 -0
   Parameters: {"uuid"=>"DIIXLSGHGYLXLOND"}
   [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'DIIXLSGHGYLXLOND') LIMIT 1[0m
 Completed 200 OK in 15ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+  [1m[36mSQL (0.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.8ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "favorite_type" varchar(255), "favorite_price" float, "favorite_number" integer, "tile_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("customers")
+  [1m[36mSQL (2.0ms)[0m  [1mCREATE INDEX "index_customers_on_tile_id" ON "customers" ("tile_id")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (2.2ms)[0m  [1mCREATE TABLE "game_boards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "x" integer DEFAULT 0, "y" integer DEFAULT 0, "game_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("game_boards")
+  [1m[36mSQL (1.5ms)[0m  [1mCREATE INDEX "index_game_boards_on_game_id" ON "game_boards" ("game_id")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.4ms)[0m  [1mCREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player1_id" integer, "player2_id" integer, "game_board_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE TABLE "json_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "uuid" varchar(255), "x" integer DEFAULT 0, "y" integer DEFAULT 0, "prev_x" integer DEFAULT 0, "prev_y" integer DEFAULT 0, "money" float DEFAULT 0.0, "vanilla" integer DEFAULT 0, "chocolate" integer DEFAULT 0, "strawberry" integer DEFAULT 0, "kills" integer DEFAULT 0, "sales" integer DEFAULT 0, "turns_remaining" integer DEFAULT 0, "turn" boolean DEFAULT 'f', "can_act" boolean DEFAULT 'f', "can_move" boolean DEFAULT 'f', "game_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("players")
+  [1m[36mSQL (1.5ms)[0m  [1mCREATE INDEX "index_players_on_uuid" ON "players" ("uuid")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.4ms)[0m  [1mCREATE TABLE "somethings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE TABLE "tiles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "zombies" integer, "x" integer, "y" integer, "store" boolean, "game_board_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("tiles")
+  [1m[36mSQL (1.8ms)[0m  [1mCREATE INDEX "index_tiles_on_x_and_y_and_game_board_id" ON "tiles" ("x", "y", "game_board_id")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101211190947')
+  [1m[36mSQL (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101211175118')[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101211175126')
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101211175143')[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101211175148')
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101211181901')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101211185502')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
