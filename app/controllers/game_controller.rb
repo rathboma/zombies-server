@@ -92,7 +92,7 @@ class GameController < ApplicationController
   end
 
   def sell
-    return unless !validate_action!()
+    return unless validate_action!()
     flavors = params[:flavors]
     number = params[:number].to_i.abs
     customer_id = params[:customer_id].to_i
