@@ -103,8 +103,7 @@ class Game < ActiveRecord::Base
     return {
       :player => player.to_hash,
       :tile => tile.to_hash
-    }
-    
+    }    
   end
   
   

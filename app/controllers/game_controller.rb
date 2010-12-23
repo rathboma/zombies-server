@@ -93,11 +93,11 @@ class GameController < ApplicationController
 
   def sell
     return unless !validate_action!()
-    puts "here!"
     flavors = params[:flavors]
     number = params[:number].to_i.abs
     customer_id = params[:customer_id].to_i
     response = @player.game.sell(@player, flavors, number, customer_id)
+    puts "I got here"
     puts response
     render :json => response.nil? ? {:error => @player.game.error} : response
   end
