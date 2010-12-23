@@ -156,7 +156,7 @@ class Game < ActiveRecord::Base
     tile = @player.game.game_board.tiles.with_coordinates(@player.x, @player.y).first()
     begin
       @customer = tile.customers.find(customer_id)
-    rescue ActiveRecord::RecordNotFount
+    rescue ActiveRecord::RecordNotFound
       @error = "Could not find customer"
       return nil
     end
