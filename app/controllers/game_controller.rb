@@ -13,13 +13,20 @@ class GameController < ApplicationController
   
   
   def join
+    debug = params[:debug]
     g = Game.waiting.last()
-    g = Game.new_with_game_board if !g
+    if !g || debug
+      g = Game.new_with_game_board
+    end
+    
     g.save!
     @p = Player.new(:name => params[:name])
     @p.setup(g.game_board.initial_tile)
     @p.save!
     g.add_player!(@p)
+    if debug
+      g.add_player!(@p) #both players are the player
+    end
     g.start_game if g.ready?
     g.save!
     @p.game_id = g.id
