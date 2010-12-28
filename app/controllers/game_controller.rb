@@ -22,7 +22,7 @@ class GameController < ApplicationController
       if act[:action] == :kill
         game.kill(aiPlayer)
       elsif act[:action] == :sell
-        game.sell(aiPlayer, act[:flavors], act[:number], act[:customer_id])
+        game.sell(aiPlayer, act[:flavor], act[:number], act[:customer_id])
       elsif action[:action] == :buy
         game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
       elsif action[:action] == :run

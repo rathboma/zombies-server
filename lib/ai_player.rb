@@ -139,10 +139,10 @@ module AIPlayer
 
 		def sell_ice_cream(curr, inv)
 			sale = choose_best_sale(curr, inv)
-			{ :action =>	:sell				\
-			, :customer =>	sale.customer.id	\
-			, :flavor =>	sale.flavor			\
-			, :number =>	sale.number			}
+			{ :action =>		:sell				\
+			, :customer_id =>	sale.customer.id	\
+			, :flavor =>		sale.flavor			\
+			, :number =>		sale.number			}
 		end
 
 		def run_away
