@@ -359,4 +359,4 @@ end
 
 ###
 
-AIPlayer::Client.new(true)
+AIPlayer::Client.new(true) if $0 == __FILE__
