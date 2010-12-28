@@ -2,9 +2,9 @@ class Tile < ActiveRecord::Base
   attr_accessible :x, :y, :store, :zombies, :game_board_id
   belongs_to :game_board
   has_many :customers
-  
+
   scope :with_coordinates, lambda {|x, y| where(:x => x, :y => y)}
-  
+
   def self.generate!(x, y, options = {})
     t = new(options)
     t.x = x
@@ -21,22 +21,18 @@ class Tile < ActiveRecord::Base
     t.save!
     t
   end
-  
+
   def to_hash
-    return {
-      :x => x,
+    { :x => x,
       :y => y,
       :store => store,
       :zombies => zombies,
-      :customers => customer_list
-    }
+      :customers => customer_list }
   end
-  
+
   def customer_list
     results = []
     self.customers.each {|c| results << c.to_hash}
-    return results
+    results
   end
-  
-  
 end

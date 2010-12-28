@@ -1,24 +1,20 @@
 class GameController < ApplicationController
-  
   respond_to :json
   skip_before_filter :verify_authenticity_token
   #post
   before_filter :set_default_response_format
 
-  
-
   def set_default_response_format
     request.format = :json if params[:format].nil?
   end
-  
-  
+
   def join
     debug = params[:debug]
     g = Game.waiting.last()
     if !g || debug
       g = Game.new_with_game_board
     end
-    
+
     g.save!
     @p = Player.new(:name => params[:name])
     @p.setup(g.game_board.initial_tile)
@@ -33,7 +29,7 @@ class GameController < ApplicationController
     puts @p.save!
     render :json => {:uuid => @p.uuid}
   end
-  
+
   #get
   def get_turn
     @player = Player.find_by_uuid(params[:uuid])
@@ -43,6 +39,7 @@ class GameController < ApplicationController
     end
     render :json => {:turn => @player.turn?}
   end
+
   #sends player.uuid
   def get_game_state
     @player = Player.find_by_uuid(params[:uuid])
@@ -55,7 +52,7 @@ class GameController < ApplicationController
     respond_with (resp_obj)
     # get game.gamestate
   end
-  
+
   #params: uuid, x, y
   def post_make_move
     #moves to a new tile : if tile doesn't exist, create the tile and add it to the game_state
@@ -64,7 +61,7 @@ class GameController < ApplicationController
       render :json => {:error => "not a valid player UUID"}
       return
     end
-    
+
     @game = @player.game
       if @tile = @game.move(@player, params[:x], params[:y])
          render :json => {:tile => @tile.to_hash, :player => @player.to_hash}
@@ -72,10 +69,8 @@ class GameController < ApplicationController
         render :json => {:error => @game.move_error}
       end
   end
-  
+
   #params = uuid, type, details
-
-
   def validate_action!
     uuid = params[:uuid]
     if !uuid || !(@player = Player.find_by_uuid(uuid))
@@ -83,12 +78,13 @@ class GameController < ApplicationController
       puts "invalid"
       return false
     end
+
     if !@player.can_act
       render :json => {:error => "this player is not allowed to act"}
       puts "also invalid"
       return false
     end
-    return true
+    true
   end
 
   def kill
@@ -119,15 +115,12 @@ class GameController < ApplicationController
       render :json => {:error => "didn't supply either the flavor, or the number to buy"}
       return
     end
-    
+
     response = @player.game.buy(@player, flavor, num)
     render :json => response.nil? ? {:error => @player.game.error} : response
   end
-  
 
   def run
-    
+    #TODO
   end
-  
-  
 end
