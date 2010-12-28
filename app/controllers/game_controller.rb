@@ -5,7 +5,7 @@ class GameController < ApplicationController
   skip_before_filter :verify_authenticity_token
   #post
   before_filter :set_default_response_format
-  after_filter :play_ai_turns, :only => ["kill", "sell", "buy", "run"]
+  after_filter :play_ai_turns, :only => ["join", "kill", "sell", "buy", "run"]
 
   def set_default_response_format
     request.format = :json if params[:format].nil?
@@ -24,7 +24,7 @@ class GameController < ApplicationController
       elsif act[:action] == :sell
         game.sell(aiPlayer, act[:flavors], act[:number], act[:customer_id])
       elsif action[:action] == :buy
-        player.game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
+        game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
       elsif action[:action] == :run
         #nothing yet
       end
@@ -33,24 +33,25 @@ class GameController < ApplicationController
 
   def join
     debug = params[:debug]
-    g = Game.waiting.last()
-    if !g || debug
-      g = Game.new_with_game_board
+    ai = params[:ai]
+    game = Game.waiting.last()
+    if !game || debug
+      game = Game.new_with_game_board(ai)
     end
 
-    g.save!
-    @p = Player.new(:name => params[:name])
-    @p.setup(g.game_board.initial_tile)
-    @p.save!
-    g.add_player!(@p)
+    game.save!
+    @player = Player.new(:name => params[:name])
+    @player.setup(game.game_board.initial_tile)
+    @player.save!
+    game.add_player!(@player)
     if debug
-      g.add_player!(@p) #both players are the player
+      game.add_player!(@player) #both players are the player
     end
-    g.start_game if g.ready?
-    g.save!
-    @p.game_id = g.id
-    puts @p.save!
-    render :json => {:uuid => @p.uuid}
+    game.start_game if game.ready?
+    game.save!
+    @player.game_id = game.id
+    puts @player.save!
+    render :json => {:uuid => @player.uuid}
   end
 
   #get

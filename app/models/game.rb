@@ -6,10 +6,11 @@ class Game < ActiveRecord::Base
   COSTS = { "V" => 1, "C" => 2, "S" => 3 }
   PRICES = { "V" => 1.5, "C" => 4, "S" => 4.5 }
 
-  def self.new_with_game_board
-    g = new
-    g.game_board = GameBoard.new(:x => 31, :y => 31)
-    g
+  def self.new_with_game_board(ai = false)
+    game = new
+    game.game_board = GameBoard.new(:x => 31, :y => 31)
+    game.add_player!(Player.new(:name => params[:name], :ai => true)) if ai
+    game
   end
 
   def move_error
