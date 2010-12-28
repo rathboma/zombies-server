@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101211190947) do
+ActiveRecord::Schema.define(:version => 20101228100612) do
 
   create_table "customers", :force => true do |t|
     t.string   "favorite_type"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20101211190947) do
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ai",              :default => false
   end
 
   add_index "players", ["uuid"], :name => "index_players_on_uuid"
