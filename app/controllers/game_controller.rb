@@ -1,11 +1,34 @@
 class GameController < ApplicationController
+  include AIPlayer
+
   respond_to :json
   skip_before_filter :verify_authenticity_token
   #post
   before_filter :set_default_response_format
+  after_filter :play_ai_turns, :only => ["kill", "sell", "buy", "run"]
 
   def set_default_response_format
     request.format = :json if params[:format].nil?
+  end
+
+  def play_ai_turns
+    game = @player.game
+    while game.current_player.ai && !@game.game_over?
+      aiPlayer = game.current_player
+      ai = AIPlayer::Client.new
+      move = ai.make_move(JsonGame.new(aiPlayer, game.game_board, game.other_player(aiPlayer), game.game_over?, game.won?(aiPlayer)))
+      tile = game.move(aiPlayer, move[:x], move[:y])
+      act = ai.take_action({:tile => tile.to_hash, :player => aiPlayer.to_hash}.to_json)
+      if act[:action] == :kill
+        game.kill(aiPlayer)
+      elsif act[:action] == :sell
+        game.sell(aiPlayer, act[:flavors], act[:number], act[:customer_id])
+      elsif action[:action] == :buy
+        player.game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
+      elsif action[:action] == :run
+        #nothing yet
+      end
+    end
   end
 
   def join
@@ -64,7 +87,7 @@ class GameController < ApplicationController
 
     @game = @player.game
       if @tile = @game.move(@player, params[:x], params[:y])
-         render :json => {:tile => @tile.to_hash, :player => @player.to_hash}
+        render :json => {:tile => @tile.to_hash, :player => @player.to_hash}
       else
         render :json => {:error => @game.move_error}
       end

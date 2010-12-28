@@ -34,6 +34,10 @@ class Game < ActiveRecord::Base
     if (player1 && player2) ? : player1.turns_remaining + player2.turns_remaining : nil
   end
 
+  def current_player
+    [player1, player2].select(&:can_play).first
+  end
+
   def player1
     @player1 ||= Player.find(self.player1_id) if player1_id
   end

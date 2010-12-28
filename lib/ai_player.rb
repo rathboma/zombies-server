@@ -1,22 +1,3 @@
-# #after a player takes their turn
-# @game = @player.game # we already have this
-# while @game.current_player.ai && !@game.over?
-# 	aiPlayer = @game.current_player
-# 	ai = Client::AIPlayer.new
-# 	move = ai.make_move(JsonGame.new(aiPlayer, @game.game_board, @game.other_player(aiPlayer), @game.game_over?, @game.won?(aiPlayer)))
-# 	tile = @game.move(@aiPlayer, move[:x], move[:y])
-# 	act = ai.take_action({:tile => @tile.to_hash, :player => aiPlayer.to_hash}.to_json)
-# 	if act[:action] == :kill
-# 		@game.kill(aiPlayer)
-# 	elsif act[:action] == :sell
-# 		@game.sell(aiPlayer, act[:flavors], act[:number], act[:customer_id])
-# 	elsif action[:action] == :buy
-# 		@player.game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
-# 	elsif action[:action] == :run
-# 		#nothing yet
-# 	end
-# end
-
 require 'rubygems'
 require 'json'
 
