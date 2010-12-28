@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  attr_accessible :uuid, :x, :y, :money, :vanilla, :chocolate, :strawberry, :kills, :sales, :turns_remaining, :can_act, :can_move, :prev_x, :prev_y
+  attr_accessible :uuid, :x, :y, :money, :vanilla, :chocolate, :strawberry, :kills, :sales, :turns_remaining, :can_act, :can_move, :prev_x, :prev_y, :ai
   before_save :set_uuid
 #  belongs_to :game, :foreign_key => :game_id
 
