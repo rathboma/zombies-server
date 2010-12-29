@@ -95,7 +95,7 @@ class Player < ActiveRecord::Base
       :x => self.x,
       :y => self.y,
       :kills => self.kills,
-      :sales => self.kills,
+      :sales => self.sales,
       :money => self.money
     }
     results

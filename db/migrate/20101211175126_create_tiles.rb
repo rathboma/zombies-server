@@ -1,10 +1,10 @@
 class CreateTiles < ActiveRecord::Migration
   def self.up
     create_table :tiles do |t|
-      t.column :zombies, :int
+      t.column :zombies, :int, :default => 0
       t.column :x, :int
       t.column :y, :int
-      t.column :store, :boolean
+      t.column :store, :boolean, :default => false
       t.column :game_board_id, :int
       t.timestamps
     end

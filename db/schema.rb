@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(:version => 20101211190947) do
     t.integer  "kills",           :default => 0
     t.integer  "sales",           :default => 0
     t.integer  "turns_remaining", :default => 0
-    t.boolean  "turn",            :default => false
     t.boolean  "can_act",         :default => false
     t.boolean  "can_move",        :default => false
     t.integer  "game_id"
@@ -75,10 +74,10 @@ ActiveRecord::Schema.define(:version => 20101211190947) do
   end
 
   create_table "tiles", :force => true do |t|
-    t.integer  "zombies"
+    t.integer  "zombies",       :default => 0
     t.integer  "x"
     t.integer  "y"
-    t.boolean  "store"
+    t.boolean  "store",         :default => false
     t.integer  "game_board_id"
     t.datetime "created_at"
     t.datetime "updated_at"

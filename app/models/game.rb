@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
   
   def self.new_with_game_board
     g = new
-    g.game_board = GameBoard.new(:x => 31, :y => 31)
+    g.game_board = GameBoard.new(:x => 21, :y => 21)
     g
   end
 
