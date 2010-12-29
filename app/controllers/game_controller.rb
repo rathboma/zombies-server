@@ -35,7 +35,7 @@ class GameController < ApplicationController
     debug = params[:debug]
     ai = params[:ai]
     game = Game.waiting.last()
-    if !game || debug
+    if !game || debug || ai
       game = Game.new_with_game_board(ai || debug)
     end
 
