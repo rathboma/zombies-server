@@ -8,8 +8,13 @@ class Game < ActiveRecord::Base
 
   def self.new_with_game_board(ai = false)
     game = new
-    game.game_board = GameBoard.new(:x => 31, :y => 31)
-    game.add_player!(Player.new(:name => params[:name], :ai => true)) if ai
+    game.game_board = GameBoard.create(:x => 21, :y => 21)
+    if ai
+      aiPlayer = Player.new(:name => "AI", :ai => true)
+      aiPlayer.setup(game.game_board.initial_tile)
+      aiPlayer.save!
+      game.add_player!(aiPlayer)
+    end
     game
   end
 
@@ -23,12 +28,17 @@ class Game < ActiveRecord::Base
   
   def add_player!(p)
     if !player1_id
-      puts "adding player: #{p.inspect}"
+      puts "adding player one: #{p.inspect}"
       self.player1_id = p.id
-    else
+    elsif !player2_id
+      puts "adding player two: #{p.inspect}"
       self.player2_id = p.id
+    else
+      puts "ERROR: This game already has two players!"
     end
     self.save!
+    p.game_id = self.id
+    p.save!
   end
 
   def turns_remaining

@@ -11,8 +11,8 @@ class Tile < ActiveRecord::Base
     t.y = y
     t.store = true if rand(100) == 1
     unless t.store
-      t.zombies = rand(4)
-      cust = rand(4)
+      t.zombies = rand(4) + 1 #at least one
+      cust = rand(3) + 1 # at least 1.
       (0..cust).each do |i|
         t.customers << Customer.generate
       end

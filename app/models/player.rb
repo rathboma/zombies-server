@@ -13,6 +13,8 @@ class Player < ActiveRecord::Base
   end
 
   def setup(tile)
+    self.prev_x = tile.x
+    self.prev_y = tile.y
     self.x = tile.x
     self.y = tile.y
     self.vanilla = GameConfig::STARTING_VANILLA
@@ -82,7 +84,7 @@ class Player < ActiveRecord::Base
       :x => self.x,
       :y => self.y,
       :kills => self.kills,
-      :sales => self.kills,
+      :sales => self.sales,
       :money => self.money
     }
     results

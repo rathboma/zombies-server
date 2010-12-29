@@ -11,12 +11,12 @@ class GameController < ApplicationController
   end
 
   def play_ai_turns(game)
-    while game.current_player.ai && !@game.game_over?
+    while game.ready? && game.current_player && game.current_player.ai && !game.game_over?
       aiPlayer = game.current_player
       ai = AIPlayer::Client.new
-      move = ai.make_move(JsonGame.new(aiPlayer, game.game_board, game.other_player(aiPlayer), game.game_over?, game.won?(aiPlayer)))
+      move = ai.make_move!(JsonGame.new(aiPlayer, game.game_board, game.other_player(aiPlayer), game.game_over?, game.won?(aiPlayer)))
       tile = game.move(aiPlayer, move[:x], move[:y])
-      act = ai.take_action({:tile => tile.to_hash, :player => aiPlayer.to_hash}.to_json)
+      act = ai.take_action!({:tile => tile.to_hash, :player => aiPlayer.to_hash}.to_json)
       puts "AI MAKING A MOVE: #{act.inspect}"
       if act[:action] == :kill
         game.kill(aiPlayer)
@@ -35,21 +35,17 @@ class GameController < ApplicationController
     ai = params[:ai]
     game = Game.waiting.last()
     if !game || debug
-      game = Game.new_with_game_board(ai)
+      game = Game.new_with_game_board(ai || debug)
     end
 
     game.save!
     @player = Player.new(:name => params[:name])
     @player.setup(game.game_board.initial_tile)
     @player.save!
+
     game.add_player!(@player)
-    if debug
-      game.add_player!(@player) #both players are the player
-    end
     game.start_game if game.ready?
     game.save!
-    @player.game_id = game.id
-    puts @player.save!
     render :json => {:uuid => @player.uuid}
     play_ai_turns(@player.game)
   end
