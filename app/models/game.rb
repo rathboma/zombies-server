@@ -128,8 +128,13 @@ class Game < ActiveRecord::Base
       @error = "tile not found"
       return nil
     end
-    tile.update_attributes(:zombies => tile.zombies - 1) if tile.zombies > 0
-    @player.update_attributes(:can_act => false, :turns_remaining => @player.turns_remaining - 1, :kills => @player.kills + 1)
+    if(tile.zombies > 0)
+      tile.update_attributes(:zombies => tile.zombies - 1)
+      @player.kills += 1
+    end
+    @player.can_act = false
+    @player.turns_remaining -= 1
+    @player.save!
     @player.game.other_player(@player).update_attributes(:can_move => true)
     action_result(@player, tile)
   end
