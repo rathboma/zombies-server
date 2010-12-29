@@ -360,3 +360,258 @@ Migrating to AddAiFieldToPlayers (20101228100612)
   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("somethings")
   [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("tiles")[0m
   [1m[35mSQL (0.0ms)[0m  PRAGMA index_info('index_tiles_on_x_and_y_and_game_board_id')
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:46:54 -0800 2010
+
+ActionController::RoutingError (uninitialized constant GameController::AIPlayer):
+  app/controllers/game_controller.rb:2
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:50:00 -0800 2010
+
+LoadError (no such file to load -- json):
+  lib/ai_player.rb:2
+  app/controllers/game_controller.rb:2
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (13.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (98.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:50:59 -0800 2010
+
+LoadError (no such file to load -- ruby-json):
+  lib/ai_player.rb:2
+  app/controllers/game_controller.rb:2
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:51:42 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+Completed   in 6ms
+
+SyntaxError (c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:35: syntax error, unexpected ':'
+...   if (player1 && player2) ? : player1.turns_remaining + pla...
+                              ^
+c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:35: syntax error, unexpected ':', expecting kEND
+...ng + player2.turns_remaining : nil
+                              ^
+c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:51: syntax error, unexpected tINTEGER, expecting kDO or '{' or '('):
+  app/controllers/game_controller.rb:37:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:52:45 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+Completed   in 6ms
+
+SyntaxError (c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:35: syntax error, unexpected ':'
+    (player1 && player2) ? : player1.turns_remaining + pla...
+                            ^
+c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:35: syntax error, unexpected ':', expecting kEND
+...ng + player2.turns_remaining : nil
+                              ^
+c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:51: syntax error, unexpected tINTEGER, expecting kDO or '{' or '('):
+  app/controllers/game_controller.rb:37:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:53:29 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+Completed   in 6ms
+
+SyntaxError (c:/Users/Bosh/Workspace/zombies-server/app/models/game.rb:51: syntax error, unexpected tINTEGER, expecting kDO or '{' or '('):
+  app/controllers/game_controller.rb:37:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:54:05 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("game_board_id", "player2_id", "player1_id", "created_at", "updated_at") VALUES (NULL, NULL, NULL, '2010-12-29 00:54:13.247495', '2010-12-29 00:54:13.247495')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("x", "game_id", "created_at", "updated_at", "y") VALUES (31, 1, '2010-12-29 00:54:13.250496', '2010-12-29 00:54:13.250496', 31)
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 1)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("game_board_id", "y", "updated_at", "zombies", "x", "created_at", "store") VALUES (NULL, 15, '2010-12-29 00:54:13.270497', 0, 15, '2010-12-29 00:54:13.270497', 't')
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "game_board_id" = 1, "updated_at" = '2010-12-29 00:54:13.318500' WHERE ("tiles"."id" = 1)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 1) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+Completed   in 329ms
+
+NoMethodError (undefined method `setup' for #<AIPlayer::Player:0xa696728>):
+  app/controllers/game_controller.rb:44:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:57:00 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("game_board_id", "updated_at", "player1_id", "created_at", "player2_id") VALUES (NULL, '2010-12-29 00:57:07.742476', NULL, '2010-12-29 00:57:07.742476', NULL)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("y", "created_at", "updated_at", "x", "game_id") VALUES (31, '2010-12-29 00:57:07.745476', '2010-12-29 00:57:07.745476', 31, 2)
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 2)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("y", "game_board_id", "zombies", "updated_at", "x", "store", "created_at") VALUES (15, NULL, 0, '2010-12-29 00:57:07.767477', 15, 't', '2010-12-29 00:57:07.767477')
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "game_board_id" = 2, "updated_at" = '2010-12-29 00:57:07.811480' WHERE ("tiles"."id" = 2)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 2) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+Completed   in 343ms
+
+NoMethodError (undefined method `setup' for #<AIPlayer::Player:0xa6561b0>):
+  app/controllers/game_controller.rb:44:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 16:58:55 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "games" ("updated_at", "player2_id", "game_board_id", "player1_id", "created_at") VALUES ('2010-12-29 00:59:02.726053', NULL, NULL, NULL, '2010-12-29 00:59:02.726053')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("y", "created_at", "updated_at", "x", "game_id") VALUES (31, '2010-12-29 00:59:02.729053', '2010-12-29 00:59:02.729053', 31, 3)
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 3)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("zombies", "y", "game_board_id", "store", "updated_at", "x", "created_at") VALUES (0, 15, NULL, 't', '2010-12-29 00:59:02.750054', 15, '2010-12-29 00:59:02.750054')
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "game_board_id" = 3, "updated_at" = '2010-12-29 00:59:02.796057' WHERE ("tiles"."id" = 3)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 3) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+Completed   in 345ms
+
+NoMethodError (undefined method `setup' for #<AIPlayer::Player:0xa594c68>):
+  app/controllers/game_controller.rb:44:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 17:00:08 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("created_at", "game_board_id", "updated_at", "player2_id", "player1_id") VALUES ('2010-12-29 01:00:16.327262', NULL, '2010-12-29 01:00:16.327262', NULL, NULL)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("updated_at", "y", "created_at", "game_id", "x") VALUES ('2010-12-29 01:00:16.331263', 31, '2010-12-29 01:00:16.331263', 4, 31)
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 4)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("x", "created_at", "y", "updated_at", "zombies", "store", "game_board_id") VALUES (15, '2010-12-29 01:00:16.352264', 15, '2010-12-29 01:00:16.352264', 0, 't', NULL)
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "updated_at" = '2010-12-29 01:00:16.396266', "game_board_id" = 4 WHERE ("tiles"."id" = 4)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 4) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("ai", "vanilla", "prev_x", "prev_y", "turns_remaining", "sales", "updated_at", "turn", "strawberry", "game_id", "money", "created_at", "chocolate", "y", "uuid", "can_act", "x", "can_move", "kills") VALUES ('f', 5, 0, 0, 20, 0, '2010-12-29 01:00:16.485272', 'f', 5, NULL, 5.0, '2010-12-29 01:00:16.485272', 5, 15, 'AGBPXXRTFAPVFYKD', 'f', 15, 'f', 0)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 01:00:16.497272', "player1_id" = 1 WHERE ("games"."id" = 4)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "games" SET "updated_at" = '2010-12-29 01:00:16.504273', "player2_id" = 1 WHERE ("games"."id" = 4)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 1) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 01:00:16.514273', "can_move" = 't' WHERE ("players"."id" = 1)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 01:00:16.523274', "game_id" = 4 WHERE ("players"."id" = 1)
+Completed   in 424ms
+
+NoMethodError (undefined method `game' for nil:NilClass):
+  app/controllers/game_controller.rb:15:in `play_ai_turns'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 17:06:36 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("game_board_id", "updated_at", "player2_id", "player1_id", "created_at") VALUES (NULL, '2010-12-29 01:06:43.937433', NULL, NULL, '2010-12-29 01:06:43.937433')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("y", "created_at", "game_id", "updated_at", "x") VALUES (31, '2010-12-29 01:06:43.940433', 5, '2010-12-29 01:06:43.940433', 31)
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 5)[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("created_at", "y", "x", "store", "zombies", "game_board_id", "updated_at") VALUES ('2010-12-29 01:06:43.961434', 15, 15, 't', 0, NULL, '2010-12-29 01:06:43.961434')
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "game_board_id" = 5, "updated_at" = '2010-12-29 01:06:44.006436' WHERE ("tiles"."id" = 5)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 5) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("game_id", "sales", "x", "kills", "y", "ai", "prev_x", "created_at", "prev_y", "money", "turn", "strawberry", "vanilla", "can_act", "updated_at", "chocolate", "uuid", "can_move", "turns_remaining") VALUES (NULL, 0, 15, 0, 15, 'f', 0, '2010-12-29 01:06:44.107442', 0, 5.0, 'f', 5, 5, 'f', '2010-12-29 01:06:44.107442', 5, 'SRTONRTBETFGXUPC', 'f', 20)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 01:06:44.121443', "player1_id" = 2 WHERE ("games"."id" = 5)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "games" SET "updated_at" = '2010-12-29 01:06:44.129443', "player2_id" = 2 WHERE ("games"."id" = 5)[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 2) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 01:06:44.140444', "can_move" = 't' WHERE ("players"."id" = 2)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "game_id" = 5, "updated_at" = '2010-12-29 01:06:44.152445' WHERE ("players"."id" = 2)
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 5) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 2) LIMIT 1[0m
+Completed   in 445ms
+
+NoMethodError (undefined method `can_play' for #<Player:0xa5c5a90>):
+  app/models/game.rb:39:in `select'
+  app/models/game.rb:39:in `current_player'
+  app/controllers/game_controller.rb:14:in `play_ai_turns'
+  app/controllers/game_controller.rb:53:in `join'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 17:08:19 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "games" ("updated_at", "player2_id", "game_board_id", "player1_id", "created_at") VALUES ('2010-12-29 01:08:27.796373', NULL, NULL, NULL, '2010-12-29 01:08:27.796373')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "game_boards" ("created_at", "y", "game_id", "x", "updated_at") VALUES ('2010-12-29 01:08:27.799373', 31, 6, 31, '2010-12-29 01:08:27.799373')
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 6)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("updated_at", "created_at", "store", "zombies", "y", "x", "game_board_id") VALUES ('2010-12-29 01:08:27.820374', '2010-12-29 01:08:27.820374', 't', 0, 15, 15, NULL)
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "tiles" SET "updated_at" = '2010-12-29 01:08:27.865377', "game_board_id" = 6 WHERE ("tiles"."id" = 6)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 6) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("money", "turn", "sales", "ai", "can_act", "chocolate", "strawberry", "can_move", "updated_at", "prev_x", "vanilla", "x", "created_at", "uuid", "game_id", "prev_y", "turns_remaining", "y", "kills") VALUES (5.0, 'f', 0, 'f', 'f', 5, 5, 'f', '2010-12-29 01:08:27.957382', 0, 5, 15, '2010-12-29 01:08:27.957382', 'DCVJLYJHWDNRUKST', NULL, 0, 20, 15, 0)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 01:08:27.968383', "player1_id" = 3 WHERE ("games"."id" = 6)
+  [1m[36mAREL (0.0ms)[0m  [1mUPDATE "games" SET "updated_at" = '2010-12-29 01:08:27.975383', "player2_id" = 3 WHERE ("games"."id" = 6)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 3) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 01:08:27.984384' WHERE ("players"."id" = 3)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 01:08:27.993384', "game_id" = 6 WHERE ("players"."id" = 3)
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 6) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 3) LIMIT 1[0m
+Completed 200 OK in 428ms (Views: 11.0ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/get_game_state/DCVJLYJHWDNRUKST" for 127.0.0.1 at Tue Dec 28 17:08:28 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"DCVJLYJHWDNRUKST"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'DCVJLYJHWDNRUKST') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 6) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 6) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 3) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 6)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 6)
+Completed 200 OK in 126ms (Views: 46.0ms | ActiveRecord: 1.0ms)

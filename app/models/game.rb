@@ -32,11 +32,11 @@ class Game < ActiveRecord::Base
   end
 
   def turns_remaining
-    if (player1 && player2) ? : player1.turns_remaining + player2.turns_remaining : nil
+    (player1 && player2) ? player1.turns_remaining + player2.turns_remaining : nil
   end
 
   def current_player
-    [player1, player2].select(&:can_play).first
+    [player1, player2].select(&:turn?).first
   end
 
   def player1
@@ -48,7 +48,7 @@ class Game < ActiveRecord::Base
   end
 
   def other_player(p)
-    if (p == player1) ? player2 : player 1
+    (p == player1) ? player2 : player1
   end
 
   def game_over?

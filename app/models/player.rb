@@ -67,7 +67,7 @@ class Player < ActiveRecord::Base
   end
 
   def turn?
-    can_move || can_act ? true : false
+    can_move || can_act
   end
 
   def update_position(new_x, new_y)

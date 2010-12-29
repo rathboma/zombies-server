@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'json'
-
 # Usage: Create a new client object. Then call make_move with the gamestate. Then call take_action with the tilestate
 module AIPlayer
 	class Client
@@ -30,8 +27,8 @@ module AIPlayer
 							, "C" => gamestate["costs"]["C"]	\
 							, "S" => gamestate["costs"]["S"]	}
 			@board = AIPlayer::Board.new(gamestate["game_board"], self)
-			@player = AIPlayer::Player.new(gamestate["players"]["you"], :self)
-			@others = gamestate["players"]["others"].map{|o| AIPlayer::Player.new(o)}
+			@player = AIPlayer::Plr.new(gamestate["players"]["you"], :self)
+			@others = gamestate["players"]["others"].map{|o| AIPlayer::Plr.new(o)}
 			if !gamestate["game_over"] && gamestate["players"]["you"]["turn"]
 				choose_move.location
 			elsif !gamestate["game_over"]
@@ -270,7 +267,7 @@ module AIPlayer
 		end
 	end
 
-	class Player
+	class Plr
 		attr_accessor :who, :location, :prev_location, :score, :money, :inventory, :kills, :sales, :turns_remaining, :can_act, :can_move
 
 		def initialize(hashdata, who = :other)

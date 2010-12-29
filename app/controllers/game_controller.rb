@@ -5,14 +5,12 @@ class GameController < ApplicationController
   skip_before_filter :verify_authenticity_token
   #post
   before_filter :set_default_response_format
-  after_filter :play_ai_turns, :only => ["join", "kill", "sell", "buy", "run"]
 
   def set_default_response_format
     request.format = :json if params[:format].nil?
   end
 
-  def play_ai_turns
-    game = @player.game
+  def play_ai_turns(game)
     while game.current_player.ai && !@game.game_over?
       aiPlayer = game.current_player
       ai = AIPlayer::Client.new
@@ -52,6 +50,7 @@ class GameController < ApplicationController
     @player.game_id = game.id
     puts @player.save!
     render :json => {:uuid => @player.uuid}
+    play_ai_turns(@player.game)
   end
 
   #get
@@ -116,6 +115,7 @@ class GameController < ApplicationController
     puts "validated"
     response = @player.game.kill(@player)
     render :json => response.nil? ? {:error => @player.game.error} : response
+    play_ai_turns(@player.game)
   end
 
   def sell
@@ -127,6 +127,7 @@ class GameController < ApplicationController
     puts "I got here"
     puts response
     render :json => response.nil? ? {:error => @player.game.error} : response
+    play_ai_turns(@player.game)
   end
 
   def buy
@@ -142,9 +143,11 @@ class GameController < ApplicationController
 
     response = @player.game.buy(@player, flavor, num)
     render :json => response.nil? ? {:error => @player.game.error} : response
+    play_ai_turns(@player.game)
   end
 
   def run
     #TODO
+    play_ai_turns(@player.game)
   end
 end
