@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
   attr_accessible :player1_id, :player2_id
-  scope :waiting, :conditions => ["player1_id IS NULL OR player2_id IS NULL"]
+  scope :waiting, :conditions => ["created_at >= ? AND (player1_id IS NULL OR player2_id IS NULL)", Time.now.advance(:minutes => -2)]
   has_one :game_board
 
   COSTS = { "V" => 1, "C" => 2, "S" => 3 }

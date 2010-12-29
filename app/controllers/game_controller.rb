@@ -35,15 +35,17 @@ class GameController < ApplicationController
     debug = params[:debug]
     ai = params[:ai]
     game = Game.waiting.last()
-    if !game || debug || ai
-      game = Game.new_with_game_board(ai || debug)
+    if !game || ai
+      game = Game.new_with_game_board(ai)
     end
 
     game.save!
     @player = Player.new(:name => params[:name])
     @player.setup(game.game_board.initial_tile)
     @player.save!
-
+    if debug && !ai
+      game.add_player!(@player)
+    end
     game.add_player!(@player)
     game.start_game if game.ready?
     game.save!
