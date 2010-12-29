@@ -132,10 +132,8 @@ class Game < ActiveRecord::Base
       tile.update_attributes(:zombies => tile.zombies - 1)
       @player.kills += 1
     end
-    @player.can_act = false
-    @player.turns_remaining -= 1
+    finish_action(@player)
     @player.save!
-    @player.game.other_player(@player).update_attributes(:can_move => true)
     action_result(@player, tile)
   end
 
@@ -214,7 +212,7 @@ class Game < ActiveRecord::Base
 
   def finish_action(player)
     player.can_act = false
-    player.turns_remaining -= 1
+    player.turns_remaining -= 1 if player.turns_remaining > 0
     player.save!
     player.game.other_player(player).update_attributes(:can_move => true)
   end
