@@ -221,9 +221,6 @@ module AIPlayer
 
 		def distance_to(other)
 			if other.is_a? AIPlayer::Tile
-				puts "\n\n\n\n"
-				puts other.inspect
-				puts "\n\n\n\n"
 				(self.x - other.x).abs + (self.y - other.y).abs
 			elsif other
 				(self.x-other[:x]).abs + (self.y-other[:y]).abs

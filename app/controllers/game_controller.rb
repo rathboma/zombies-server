@@ -22,9 +22,9 @@ class GameController < ApplicationController
         game.kill(aiPlayer)
       elsif act[:action] == :sell
         game.sell(aiPlayer, act[:flavor], act[:number], act[:customer_id])
-      elsif action[:action] == :buy
+      elsif act[:action] == :buy
         game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
-      elsif action[:action] == :run
+      elsif act[:action] == :run
         #nothing yet
       end
     end
@@ -77,23 +77,30 @@ class GameController < ApplicationController
   def post_make_move
     #moves to a new tile : if tile doesn't exist, create the tile and add it to the game_state
     @player = Player.find_by_uuid(params[:uuid])
+    @game = @player.game
+    play_ai_turns(@player.game)
+
     if !@player
       render :json => {:error => "not a valid player UUID"}
       return
     end
 
-    @game = @player.game
-      if @tile = @game.move(@player, params[:x], params[:y])
-        render :json => {:tile => @tile.to_hash, :player => @player.to_hash}
-      else
-        render :json => {:error => @game.move_error}
-      end
+    if @tile = @game.move(@player, params[:x], params[:y])
+      render :json => {:tile => @tile.to_hash, :player => @player.to_hash}
+    else
+      render :json => {:error => @game.move_error}
+    end
+
+    play_ai_turns(@player.game)
   end
 
   #params = uuid, type, details
   def validate_action!
     uuid = params[:uuid]
-    if !uuid || !(@player = Player.find_by_uuid(uuid))
+    @player = Player.find_by_uuid(uuid)
+    play_ai_turns(@player.game)
+
+    if !uuid || !@player
       render :json => {:error => "you didn't supply a valid UUID"}
       puts "invalid"
       return false
@@ -144,6 +151,7 @@ class GameController < ApplicationController
   end
 
   def run
+    return unless validate_action!()
     #TODO
     play_ai_turns(@player.game)
   end

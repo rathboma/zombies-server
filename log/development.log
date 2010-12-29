@@ -1328,3 +1328,805 @@ Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:43:12 -0800 2010
   Parameters: {"uuid"=>"CLXQTHKKIXTWYNCS"}
   [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'CLXQTHKKIXTWYNCS') LIMIT 1[0m
 Completed 200 OK in 30ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 18:45:25 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "game_boards" ("created_at", "y", "updated_at", "game_id", "x") VALUES ('2010-12-29 02:45:25.542129', 21, '2010-12-29 02:45:25.542129', NULL, 21)[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 27)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "tiles" ("created_at", "updated_at", "zombies", "y", "game_board_id", "x", "store") VALUES ('2010-12-29 02:45:25.563130', '2010-12-29 02:45:25.563130', 0, 10, NULL, 10, 't')[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 02:45:25.566130', "game_board_id" = 27 WHERE ("tiles"."id" = 36)
+WARNING: Can't mass-assign protected attributes: name
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "players" ("game_id", "can_act", "x", "prev_y", "sales", "uuid", "can_move", "ai", "y", "money", "created_at", "kills", "chocolate", "strawberry", "turns_remaining", "prev_x", "updated_at", "vanilla") VALUES (NULL, 'f', 10, 10, 0, 'CGJYKSNFLYGTACAB', 'f', 't', 10, 5.0, '2010-12-29 02:45:25.660136', 0, 5, 5, 20, 10, '2010-12-29 02:45:25.660136', 5)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("game_board_id", "player1_id", "updated_at", "player2_id", "created_at") VALUES (NULL, 50, '2010-12-29 02:45:25.672136', NULL, '2010-12-29 02:45:25.672136')[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "game_boards" SET "updated_at" = '2010-12-29 02:45:25.675137', "game_id" = 26 WHERE ("game_boards"."id" = 27)
+  [1m[36mAREL (3.0ms)[0m  [1mUPDATE "players" SET "game_id" = 26, "updated_at" = '2010-12-29 02:45:25.684137' WHERE ("players"."id" = 50)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("game_id", "can_act", "x", "prev_y", "sales", "uuid", "can_move", "ai", "y", "money", "created_at", "kills", "chocolate", "strawberry", "turns_remaining", "prev_x", "updated_at", "vanilla") VALUES (NULL, 'f', 10, 10, 0, 'XYFDXAMFVKONRHSY', 'f', 'f', 10, 5.0, '2010-12-29 02:45:25.698138', 0, 5, 5, 20, 10, '2010-12-29 02:45:25.698138', 5)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 02:45:25.712139', "player2_id" = 51 WHERE ("games"."id" = 26)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 26, "updated_at" = '2010-12-29 02:45:25.724139' WHERE ("players"."id" = 51)[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:45:25.736140' WHERE ("players"."id" = 50)[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_act" = 't', "x" = 9, "can_move" = 'f', "updated_at" = '2010-12-29 02:45:25.841146' WHERE ("players"."id" = 50)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("created_at", "updated_at", "zombies", "y", "game_board_id", "x", "store") VALUES ('2010-12-29 02:45:25.927151', '2010-12-29 02:45:25.927151', 1, 10, 27, 9, 'f')
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_price", "favorite_number", "created_at", "favorite_type", "updated_at") VALUES (37, 3.0, 3, '2010-12-29 02:45:25.931151', 'S,S', '2010-12-29 02:45:25.931151')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("tile_id", "favorite_price", "favorite_number", "created_at", "favorite_type", "updated_at") VALUES (37, 26.0, 3, '2010-12-29 02:45:25.934151', 'S,S', '2010-12-29 02:45:25.934151')
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_price", "favorite_number", "created_at", "favorite_type", "updated_at") VALUES (37, 3.0, 4, '2010-12-29 02:45:25.937152', 'V,V', '2010-12-29 02:45:25.937152')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("tile_id", "favorite_price", "favorite_number", "created_at", "favorite_type", "updated_at") VALUES (37, 17.0, 2, '2010-12-29 02:45:25.939152', 'V,S', '2010-12-29 02:45:25.939152')
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 02:45:25.961153', "zombies" = 0 WHERE ("tiles"."id" = 37)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_act" = 'f', "kills" = 1, "turns_remaining" = 19, "updated_at" = '2010-12-29 02:45:25.971153' WHERE ("players"."id" = 50)[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:45:25.986154' WHERE ("players"."id" = 51)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+Completed 200 OK in 483ms (Views: 11.0ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/get_game_state/XYFDXAMFVKONRHSY" for 127.0.0.1 at Tue Dec 28 18:45:26 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+Completed 200 OK in 126ms (Views: 54.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:45:36 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"9", "y"=>"10", "uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mAREL (2.0ms)[0m  [1mUPDATE "players" SET "can_move" = 'f', "updated_at" = '2010-12-29 02:45:36.483755', "can_act" = 't', "x" = 9 WHERE ("players"."id" = 51)[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+Completed 200 OK in 203ms (Views: 13.0ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/sell" for 127.0.0.1 at Tue Dec 28 18:45:42 -0800 2010
+  Processing by GameController#sell as HTML
+  Parameters: {"number"=>"1", "uuid"=>"XYFDXAMFVKONRHSY", "customer_id"=>"29", "flavors"=>"S,S"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37) AND ("customers"."id" = 29) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mDELETE FROM "customers" WHERE ("customers"."id" = 29)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "strawberry" = 3, "money" = 31.0, "can_act" = 'f', "turns_remaining" = 19, "sales" = 1, "updated_at" = '2010-12-29 02:45:42.293087' WHERE ("players"."id" = 51)
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:45:42.307088' WHERE ("players"."id" = 50)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 'f', "can_act" = 't', "prev_x" = 9, "updated_at" = '2010-12-29 02:45:42.369091', "x" = 10 WHERE ("players"."id" = 50)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "kills" = 2, "can_act" = 'f', "turns_remaining" = 18, "updated_at" = '2010-12-29 02:45:42.385092' WHERE ("players"."id" = 50)
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:45:42.397093' WHERE ("players"."id" = 51)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)
+Completed 200 OK in 256ms (Views: 14.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/get_turn/XYFDXAMFVKONRHSY" for 127.0.0.1 at Tue Dec 28 18:45:42 -0800 2010
+  Processing by GameController#get_turn as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 28ms (Views: 11.0ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/get_game_state/XYFDXAMFVKONRHSY" for 127.0.0.1 at Tue Dec 28 18:45:42 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)[0m
+Completed 200 OK in 121ms (Views: 54.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:46:10 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"9", "y"=>"11", "uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_act" = 't', "y" = 11, "can_move" = 'f', "updated_at" = '2010-12-29 02:46:10.463698', "prev_x" = 9 WHERE ("players"."id" = 51)[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 11) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "tiles" ("x", "game_board_id", "created_at", "y", "store", "zombies", "updated_at") VALUES (9, 27, '2010-12-29 02:46:10.565704', 11, 'f', 3, '2010-12-29 02:46:10.565704')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("favorite_price", "created_at", "updated_at", "favorite_type", "tile_id", "favorite_number") VALUES (24.0, '2010-12-29 02:46:10.568704', '2010-12-29 02:46:10.568704', 'V,S', 38, 4)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_price", "created_at", "updated_at", "favorite_type", "tile_id", "favorite_number") VALUES (17.0, '2010-12-29 02:46:10.570704', '2010-12-29 02:46:10.570704', 'C', 38, 4)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("favorite_price", "created_at", "updated_at", "favorite_type", "tile_id", "favorite_number") VALUES (3.0, '2010-12-29 02:46:10.572705', '2010-12-29 02:46:10.572705', 'C,S,V,S,V', 38, -1)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "customers" ("favorite_price", "created_at", "updated_at", "favorite_type", "tile_id", "favorite_number") VALUES (21.0, '2010-12-29 02:46:10.573705', '2010-12-29 02:46:10.573705', 'V', 38, 3)[0m
+Completed 200 OK in 230ms (Views: 12.0ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:46:14 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 26) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 26) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 9) AND ("tiles"."y" = 11) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 02:46:14.479928', "zombies" = 2 WHERE ("tiles"."id" = 38)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "kills" = 1, "turns_remaining" = 18, "updated_at" = '2010-12-29 02:46:14.541932', "can_act" = 'f' WHERE ("players"."id" = 51)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:46:14.553932' WHERE ("players"."id" = 50)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 38)
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 36)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 37)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 38)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "prev_x" = 10, "can_move" = 'f', "updated_at" = '2010-12-29 02:46:14.703941', "can_act" = 't', "y" = 11 WHERE ("players"."id" = 50)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 27) AND ("tiles"."x" = 10) AND ("tiles"."y" = 11) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("store", "x", "y", "created_at", "game_board_id", "updated_at", "zombies") VALUES ('f', 10, 11, '2010-12-29 02:46:14.715941', 27, '2010-12-29 02:46:14.715941', 2)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_price", "tile_id", "updated_at", "created_at", "favorite_type", "favorite_number") VALUES (23.0, 39, '2010-12-29 02:46:14.718942', '2010-12-29 02:46:14.718942', 'C,S', 3)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("favorite_price", "tile_id", "updated_at", "created_at", "favorite_type", "favorite_number") VALUES (10.0, 39, '2010-12-29 02:46:14.720942', '2010-12-29 02:46:14.720942', 'S', 2)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_price", "tile_id", "updated_at", "created_at", "favorite_type", "favorite_number") VALUES (26.0, 39, '2010-12-29 02:46:14.722942', '2010-12-29 02:46:14.722942', 'C', 2)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("favorite_price", "tile_id", "updated_at", "created_at", "favorite_type", "favorite_number") VALUES (17.0, 39, '2010-12-29 02:46:14.723942', '2010-12-29 02:46:14.723942', 'V', 1)
+Completed   in 326ms
+
+NameError (undefined local variable or method `action' for #<GameController:0xb3f4918>):
+  app/controllers/game_controller.rb:25:in `play_ai_turns'
+  app/controllers/game_controller.rb:115:in `kill'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:46:52 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/sell" for 127.0.0.1 at Tue Dec 28 18:47:15 -0800 2010
+  Processing by GameController#sell as HTML
+  Parameters: {"number"=>"1", "uuid"=>"XYFDXAMFVKONRHSY", "customer_id"=>"33", "flavors"=>"C"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+Completed 200 OK in 29ms (Views: 10.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:46 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:46 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:47 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:49 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:50 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 30ms (Views: 11.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:51 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:48:53 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"XYFDXAMFVKONRHSY"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'XYFDXAMFVKONRHSY') LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" ORDER BY games.id DESC LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" ORDER BY games.id DESC LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 50) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 51) LIMIT 1
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 18:56:04 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "game_boards" ("y", "x", "created_at", "game_id", "updated_at") VALUES (21, 21, '2010-12-29 02:56:12.507133', NULL, '2010-12-29 02:56:12.507133')[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 28)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "tiles" ("zombies", "y", "updated_at", "created_at", "game_board_id", "store", "x") VALUES (0, 10, '2010-12-29 02:56:12.603139', '2010-12-29 02:56:12.603139', NULL, 't', 10)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 02:56:12.607139', "game_board_id" = 28 WHERE ("tiles"."id" = 40)
+WARNING: Can't mass-assign protected attributes: name
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "players" ("kills", "strawberry", "game_id", "y", "chocolate", "ai", "vanilla", "sales", "updated_at", "created_at", "can_act", "x", "money", "prev_y", "turns_remaining", "can_move", "uuid", "prev_x") VALUES (0, 5, NULL, 10, 5, 't', 5, 0, '2010-12-29 02:56:12.656142', '2010-12-29 02:56:12.656142', 'f', 10, 5.0, 10, 20, 'f', 'KHNNXNSNORRYELKI', 10)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("game_board_id", "player2_id", "created_at", "player1_id", "updated_at") VALUES (NULL, NULL, '2010-12-29 02:56:12.671143', 52, '2010-12-29 02:56:12.671143')[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "game_boards" SET "game_id" = 27, "updated_at" = '2010-12-29 02:56:12.674143' WHERE ("game_boards"."id" = 28)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 27, "updated_at" = '2010-12-29 02:56:12.685143' WHERE ("players"."id" = 52)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("kills", "strawberry", "game_id", "y", "chocolate", "ai", "vanilla", "sales", "updated_at", "created_at", "can_act", "x", "money", "prev_y", "turns_remaining", "can_move", "uuid", "prev_x") VALUES (0, 5, NULL, 10, 5, 'f', 5, 0, '2010-12-29 02:56:12.699144', '2010-12-29 02:56:12.699144', 'f', 10, 5.0, 10, 20, 'f', 'LGKRALNDYRBDTUVY', 10)[0m
+  [1m[35mAREL (2.0ms)[0m  UPDATE "games" SET "player2_id" = 53, "updated_at" = '2010-12-29 02:56:12.713145' WHERE ("games"."id" = 27)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 27, "updated_at" = '2010-12-29 02:56:12.723146' WHERE ("players"."id" = 53)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:56:12.735146', "can_move" = 't' WHERE ("players"."id" = 52)[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 02:56:12.794150', "can_act" = 't', "x" = 9, "can_move" = 'f' WHERE ("players"."id" = 52)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("zombies", "y", "updated_at", "created_at", "game_board_id", "store", "x") VALUES (3, 10, '2010-12-29 02:56:12.810151', '2010-12-29 02:56:12.810151', 28, 'f', 9)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_type", "created_at", "favorite_price", "favorite_number", "updated_at") VALUES (41, 'C,S', '2010-12-29 02:56:12.813151', 41.0, 3, '2010-12-29 02:56:12.813151')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("tile_id", "favorite_type", "created_at", "favorite_price", "favorite_number", "updated_at") VALUES (41, 'V,S', '2010-12-29 02:56:12.816151', 9.0, -1, '2010-12-29 02:56:12.816151')
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_type", "created_at", "favorite_price", "favorite_number", "updated_at") VALUES (41, 'S,S', '2010-12-29 02:56:12.817151', 5.0, 4, '2010-12-29 02:56:12.817151')[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "tiles" SET "zombies" = 2, "updated_at" = '2010-12-29 02:56:12.834152' WHERE ("tiles"."id" = 41)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "kills" = 1, "updated_at" = '2010-12-29 02:56:12.843152', "can_act" = 'f', "turns_remaining" = 19 WHERE ("players"."id" = 52)
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:56:12.854153', "can_move" = 't' WHERE ("players"."id" = 53)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)
+Completed 200 OK in 562ms (Views: 11.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/get_game_state/LGKRALNDYRBDTUVY" for 127.0.0.1 at Tue Dec 28 18:56:12 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)
+Completed 200 OK in 188ms (Views: 102.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:57:06 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"11", "y"=>"10", "uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 'f', "can_act" = 't', "updated_at" = '2010-12-29 02:57:06.194204', "x" = 11 WHERE ("players"."id" = 53)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("x", "created_at", "zombies", "store", "game_board_id", "y", "updated_at") VALUES (11, '2010-12-29 02:57:06.237206', 1, 'f', 28, 10, '2010-12-29 02:57:06.237206')
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("created_at", "favorite_price", "favorite_number", "tile_id", "favorite_type", "updated_at") VALUES ('2010-12-29 02:57:06.240207', 35.0, 3, 42, 'C,S,V', '2010-12-29 02:57:06.240207')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("created_at", "favorite_price", "favorite_number", "tile_id", "favorite_type", "updated_at") VALUES ('2010-12-29 02:57:06.243207', 21.0, 4, 42, 'C,S,V,S,V', '2010-12-29 02:57:06.243207')
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("created_at", "favorite_price", "favorite_number", "tile_id", "favorite_type", "updated_at") VALUES ('2010-12-29 02:57:06.244207', 31.0, 1, 42, 'C', '2010-12-29 02:57:06.244207')[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("created_at", "favorite_price", "favorite_number", "tile_id", "favorite_type", "updated_at") VALUES ('2010-12-29 02:57:06.246207', 32.0, 2, 42, 'C,S', '2010-12-29 02:57:06.246207')
+Completed 200 OK in 140ms (Views: 14.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:57:11 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "tiles" SET "updated_at" = '2010-12-29 02:57:11.920531', "zombies" = 0 WHERE ("tiles"."id" = 42)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "turns_remaining" = 19, "kills" = 1, "can_act" = 'f', "updated_at" = '2010-12-29 02:57:11.978535' WHERE ("players"."id" = 53)
+  [1m[36mAREL (2.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:57:11.989535', "can_move" = 't' WHERE ("players"."id" = 52)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)
+  [1m[36mAREL (2.0ms)[0m  [1mUPDATE "players" SET "can_act" = 't', "updated_at" = '2010-12-29 02:57:12.106542', "can_move" = 'f', "prev_x" = 9, "x" = 10 WHERE ("players"."id" = 52)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "turns_remaining" = 18, "kills" = 2, "can_act" = 'f', "updated_at" = '2010-12-29 02:57:12.123543' WHERE ("players"."id" = 52)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 02:57:12.135544', "can_move" = 't' WHERE ("players"."id" = 53)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)[0m
+Completed 200 OK in 339ms (Views: 20.0ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/get_turn/LGKRALNDYRBDTUVY" for 127.0.0.1 at Tue Dec 28 18:57:12 -0800 2010
+  Processing by GameController#get_turn as HTML
+  Parameters: {"uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/get_game_state/LGKRALNDYRBDTUVY" for 127.0.0.1 at Tue Dec 28 18:57:12 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)[0m
+Completed 200 OK in 171ms (Views: 104.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:57:14 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"11", "y"=>"10", "uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "prev_x" = 11, "updated_at" = '2010-12-29 02:57:14.859700', "can_act" = 't', "can_move" = 'f' WHERE ("players"."id" = 53)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)[0m
+Completed 200 OK in 163ms (Views: 13.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/sell" for 127.0.0.1 at Tue Dec 28 18:57:19 -0800 2010
+  Processing by GameController#sell as HTML
+  Parameters: {"number"=>"1", "uuid"=>"LGKRALNDYRBDTUVY", "customer_id"=>"43", "flavors"=>"C,S,V"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42) AND ("customers"."id" = 43) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mDELETE FROM "customers" WHERE ("customers"."id" = 43)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_act" = 'f', "turns_remaining" = 18, "sales" = 1, "updated_at" = '2010-12-29 02:57:19.891987', "money" = 40.0, "chocolate" = 4, "strawberry" = 4, "vanilla" = 4 WHERE ("players"."id" = 53)
+  [1m[36mAREL (2.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:57:19.902988', "can_move" = 't' WHERE ("players"."id" = 52)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_act" = 't', "updated_at" = '2010-12-29 02:57:19.958991', "can_move" = 'f', "prev_x" = 10, "x" = 11 WHERE ("players"."id" = 52)[0m
+Completed   in 267ms
+
+NameError (undefined local variable or method `action' for #<GameController:0xa27cb78>):
+  app/controllers/game_controller.rb:25:in `play_ai_turns'
+  app/controllers/game_controller.rb:134:in `sell'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:58:12 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"LGKRALNDYRBDTUVY"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'LGKRALNDYRBDTUVY') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 27) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 52) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 53) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 27) LIMIT 1
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 28)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 40)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 41)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 42)
+Completed   in 172ms
+
+NoMethodError (undefined method `to_hash' for nil:NilClass):
+  app/controllers/game_controller.rb:19:in `play_ai_turns'
+  app/controllers/game_controller.rb:101:in `validate_action!'
+  app/controllers/game_controller.rb:118:in `kill'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 18:59:16 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "game_boards" ("y", "updated_at", "x", "game_id", "created_at") VALUES (21, '2010-12-29 02:59:24.976142', 21, NULL, '2010-12-29 02:59:24.976142')[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 29)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "tiles" ("created_at", "game_board_id", "zombies", "updated_at", "store", "x", "y") VALUES ('2010-12-29 02:59:25.109149', NULL, 0, '2010-12-29 02:59:25.109149', 't', 10, 10)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "tiles" SET "game_board_id" = 29, "updated_at" = '2010-12-29 02:59:25.112150' WHERE ("tiles"."id" = 43)
+WARNING: Can't mass-assign protected attributes: name
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "players" ("game_id", "kills", "ai", "sales", "turns_remaining", "uuid", "created_at", "chocolate", "strawberry", "vanilla", "prev_y", "can_move", "y", "can_act", "updated_at", "x", "money", "prev_x") VALUES (NULL, 0, 't', 0, 20, 'BCYIEPEBOJXUWRPQ', '2010-12-29 02:59:25.155152', 5, 5, 5, 10, 'f', 10, 'f', '2010-12-29 02:59:25.155152', 10, 5.0, 10)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("created_at", "game_board_id", "updated_at", "player1_id", "player2_id") VALUES ('2010-12-29 02:59:25.171153', NULL, '2010-12-29 02:59:25.171153', 54, NULL)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "game_boards" SET "updated_at" = '2010-12-29 02:59:25.174153', "game_id" = 28 WHERE ("game_boards"."id" = 29)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 28, "updated_at" = '2010-12-29 02:59:25.185154' WHERE ("players"."id" = 54)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("game_id", "kills", "ai", "sales", "turns_remaining", "uuid", "created_at", "chocolate", "strawberry", "vanilla", "prev_y", "can_move", "y", "can_act", "updated_at", "x", "money", "prev_x") VALUES (NULL, 0, 'f', 0, 20, 'FAVFBTPVLUWTSMDA', '2010-12-29 02:59:25.198154', 5, 5, 5, 10, 'f', 10, 'f', '2010-12-29 02:59:25.198154', 10, 5.0, 10)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 02:59:25.210155', "player2_id" = 55 WHERE ("games"."id" = 28)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 28, "updated_at" = '2010-12-29 02:59:25.219156' WHERE ("players"."id" = 55)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:59:25.234157' WHERE ("players"."id" = 54)[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 'f', "can_act" = 't', "updated_at" = '2010-12-29 02:59:25.279159', "x" = 9 WHERE ("players"."id" = 54)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("created_at", "game_board_id", "zombies", "updated_at", "store", "x", "y") VALUES ('2010-12-29 02:59:25.295160', 29, 2, '2010-12-29 02:59:25.295160', 'f', 9, 10)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_price", "favorite_type", "updated_at", "created_at", "favorite_number") VALUES (44, 7.0, 'C', '2010-12-29 02:59:25.298160', '2010-12-29 02:59:25.298160', 2)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("tile_id", "favorite_price", "favorite_type", "updated_at", "created_at", "favorite_number") VALUES (44, 13.0, 'C,S,V,S,V', '2010-12-29 02:59:25.300160', '2010-12-29 02:59:25.300160', -1)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("tile_id", "favorite_price", "favorite_type", "updated_at", "created_at", "favorite_number") VALUES (44, 5.0, 'C,C', '2010-12-29 02:59:25.301160', '2010-12-29 02:59:25.301160', 3)[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "tiles" SET "zombies" = 1, "updated_at" = '2010-12-29 02:59:25.318161' WHERE ("tiles"."id" = 44)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "kills" = 1, "turns_remaining" = 19, "can_act" = 'f', "updated_at" = '2010-12-29 02:59:25.330162' WHERE ("players"."id" = 54)
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:59:25.341163' WHERE ("players"."id" = 55)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 44)
+Completed 200 OK in 589ms (Views: 11.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/get_game_state/FAVFBTPVLUWTSMDA" for 127.0.0.1 at Tue Dec 28 18:59:25 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 44)
+Completed 200 OK in 179ms (Views: 95.0ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:59:43 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"11", "y"=>"10", "uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_act" = 't', "updated_at" = '2010-12-29 02:59:43.304190', "x" = 11, "can_move" = 'f' WHERE ("players"."id" = 55)
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "tiles" ("store", "game_board_id", "created_at", "y", "updated_at", "x", "zombies") VALUES ('f', 29, '2010-12-29 02:59:43.344192', 10, '2010-12-29 02:59:43.344192', 11, 1)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_number", "created_at", "favorite_type", "favorite_price", "updated_at", "tile_id") VALUES (2, '2010-12-29 02:59:43.346193', 'C,S,V,S,V', 29.0, '2010-12-29 02:59:43.346193', 45)[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "customers" ("favorite_number", "created_at", "favorite_type", "favorite_price", "updated_at", "tile_id") VALUES (4, '2010-12-29 02:59:43.349193', 'V', 11.0, '2010-12-29 02:59:43.349193', 45)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_number", "created_at", "favorite_type", "favorite_price", "updated_at", "tile_id") VALUES (2, '2010-12-29 02:59:43.350193', 'V,V', 39.0, '2010-12-29 02:59:43.350193', 45)[0m
+Completed 200 OK in 119ms (Views: 12.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 18:59:47 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 02:59:47.592435', "zombies" = 0 WHERE ("tiles"."id" = 45)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:59:47.602436', "kills" = 1, "turns_remaining" = 19, "can_act" = 'f' WHERE ("players"."id" = 55)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 02:59:47.613437', "can_move" = 't' WHERE ("players"."id" = 54)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 44)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 02:59:47.661439', "can_move" = 'f', "prev_x" = 9, "x" = 10, "can_act" = 't' WHERE ("players"."id" = 54)
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 02:59:47.678440', "kills" = 2, "turns_remaining" = 18, "can_act" = 'f' WHERE ("players"."id" = 54)
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 02:59:47.691441', "can_move" = 't' WHERE ("players"."id" = 55)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)
+Completed 200 OK in 225ms (Views: 13.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/get_turn/FAVFBTPVLUWTSMDA" for 127.0.0.1 at Tue Dec 28 18:59:47 -0800 2010
+  Processing by GameController#get_turn as HTML
+  Parameters: {"uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1[0m
+Completed 200 OK in 28ms (Views: 11.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/get_game_state/FAVFBTPVLUWTSMDA" for 127.0.0.1 at Tue Dec 28 18:59:47 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 44)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)
+Completed 200 OK in 167ms (Views: 101.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 18:59:49 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"11", "y"=>"10", "uuid"=>"FAVFBTPVLUWTSMDA"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_act" = 't', "prev_x" = 11, "updated_at" = '2010-12-29 02:59:49.780561', "can_move" = 'f' WHERE ("players"."id" = 55)
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)
+Completed 200 OK in 177ms (Views: 20.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/sell" for 127.0.0.1 at Tue Dec 28 18:59:52 -0800 2010
+  Processing by GameController#sell as HTML
+  Parameters: {"number"=>"1", "uuid"=>"FAVFBTPVLUWTSMDA", "customer_id"=>"50", "flavors"=>"C,S,V,S,V"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'FAVFBTPVLUWTSMDA') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 28) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 54) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 55) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 28) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29) AND ("tiles"."x" = 11) AND ("tiles"."y" = 10) LIMIT 1
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45) AND ("customers"."id" = 50) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  DELETE FROM "customers" WHERE ("customers"."id" = 50)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "vanilla" = 3, "turns_remaining" = 18, "money" = 34.0, "chocolate" = 4, "strawberry" = 3, "sales" = 1, "can_act" = 'f', "updated_at" = '2010-12-29 02:59:52.821734' WHERE ("players"."id" = 55)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 02:59:52.832735' WHERE ("players"."id" = 54)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 29)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 43)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 44)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 45)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "x" = 11, "prev_x" = 10, "can_move" = 'f', "can_act" = 't', "updated_at" = '2010-12-29 02:59:52.868737' WHERE ("players"."id" = 54)
+Completed   in 195ms
+
+NameError (undefined local variable or method `action' for #<GameController:0xb23f0c8>):
+  app/controllers/game_controller.rb:25:in `play_ai_turns'
+  app/controllers/game_controller.rb:134:in `sell'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.0ms)
+
+
+Started POST "/join" for 127.0.0.1 at Tue Dec 28 19:01:27 -0800 2010
+  Processing by GameController#join as HTML
+  Parameters: {"name"=>"test_player", "debug"=>"true"}
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE (player1_id IS NULL OR player2_id IS NULL) ORDER BY games.id DESC LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "game_boards" ("x", "updated_at", "y", "created_at", "game_id") VALUES (21, '2010-12-29 03:01:35.304596', 21, '2010-12-29 03:01:35.304596', NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT COUNT(*) FROM "tiles" WHERE ("tiles".game_board_id = 30)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "tiles" ("updated_at", "game_board_id", "zombies", "created_at", "y", "store", "x") VALUES ('2010-12-29 03:01:35.396601', NULL, 0, '2010-12-29 03:01:35.396601', 10, 't', 10)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 03:01:35.398602', "game_board_id" = 30 WHERE ("tiles"."id" = 46)
+WARNING: Can't mass-assign protected attributes: name
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "players" ("prev_y", "game_id", "updated_at", "vanilla", "x", "created_at", "can_act", "turns_remaining", "money", "sales", "ai", "prev_x", "kills", "strawberry", "uuid", "chocolate", "can_move", "y") VALUES (10, NULL, '2010-12-29 03:01:35.501607', 5, 10, '2010-12-29 03:01:35.501607', 'f', 20, 5.0, 0, 't', 10, 0, 5, 'PPCFLEWQWBQOPQSQ', 5, 'f', 10)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "games" ("player1_id", "game_board_id", "updated_at", "created_at", "player2_id") VALUES (56, NULL, '2010-12-29 03:01:35.515608', '2010-12-29 03:01:35.515608', NULL)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "game_boards" SET "updated_at" = '2010-12-29 03:01:35.518608', "game_id" = 29 WHERE ("game_boards"."id" = 30)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 29, "updated_at" = '2010-12-29 03:01:35.529609' WHERE ("players"."id" = 56)[0m
+WARNING: Can't mass-assign protected attributes: name
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."store" = 't') ORDER BY id ASC LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "players" ("prev_y", "game_id", "updated_at", "vanilla", "x", "created_at", "can_act", "turns_remaining", "money", "sales", "ai", "prev_x", "kills", "strawberry", "uuid", "chocolate", "can_move", "y") VALUES (10, NULL, '2010-12-29 03:01:35.542610', 5, 10, '2010-12-29 03:01:35.542610', 'f', 20, 5.0, 0, 'f', 10, 0, 5, 'WDVINKBJTAILYITC', 5, 'f', 10)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "games" SET "updated_at" = '2010-12-29 03:01:35.558611', "player2_id" = 57 WHERE ("games"."id" = 29)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "game_id" = 29, "updated_at" = '2010-12-29 03:01:35.568611' WHERE ("players"."id" = 57)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 03:01:35.584612', "can_move" = 't' WHERE ("players"."id" = 56)[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mGameBoard Load (1.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 03:01:35.629615', "x" = 9, "can_act" = 't', "can_move" = 'f' WHERE ("players"."id" = 56)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "tiles" ("updated_at", "game_board_id", "zombies", "created_at", "y", "store", "x") VALUES ('2010-12-29 03:01:35.645616', 30, 2, '2010-12-29 03:01:35.645616', 10, 'f', 9)
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "customers" ("created_at", "updated_at", "favorite_number", "tile_id", "favorite_type", "favorite_price") VALUES ('2010-12-29 03:01:35.647616', '2010-12-29 03:01:35.647616', -1, 47, 'S', 30.0)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("created_at", "updated_at", "favorite_number", "tile_id", "favorite_type", "favorite_price") VALUES ('2010-12-29 03:01:35.649616', '2010-12-29 03:01:35.649616', 3, 47, 'V,S', 27.0)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("created_at", "updated_at", "favorite_number", "tile_id", "favorite_type", "favorite_price") VALUES ('2010-12-29 03:01:35.651616', '2010-12-29 03:01:35.651616', 3, 47, 'C,S,V,S,V', 29.0)[0m
+  [1m[35mAREL (0.0ms)[0m  INSERT INTO "customers" ("created_at", "updated_at", "favorite_number", "tile_id", "favorite_type", "favorite_price") VALUES ('2010-12-29 03:01:35.652616', '2010-12-29 03:01:35.652616', 4, 47, 'C,S,V,S,V', 35.0)
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 9) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 03:01:35.674617', "zombies" = 1 WHERE ("tiles"."id" = 47)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 03:01:35.686618', "can_act" = 'f', "turns_remaining" = 19, "kills" = 1 WHERE ("players"."id" = 56)[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 03:01:35.697619', "can_move" = 't' WHERE ("players"."id" = 57)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 47)[0m
+Completed 200 OK in 601ms (Views: 11.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/get_game_state/WDVINKBJTAILYITC" for 127.0.0.1 at Tue Dec 28 19:01:35 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"WDVINKBJTAILYITC"}
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 47)[0m
+Completed 200 OK in 183ms (Views: 99.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 19:03:33 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"10", "y"=>"11", "uuid"=>"WDVINKBJTAILYITC"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "y" = 11, "can_move" = 'f', "can_act" = 't', "updated_at" = '2010-12-29 03:03:33.463354' WHERE ("players"."id" = 57)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 11) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mINSERT INTO "tiles" ("store", "created_at", "x", "y", "game_board_id", "zombies", "updated_at") VALUES ('f', '2010-12-29 03:03:33.555360', 10, 11, 30, 1, '2010-12-29 03:03:33.555360')[0m
+  [1m[35mAREL (1.0ms)[0m  INSERT INTO "customers" ("favorite_number", "updated_at", "tile_id", "created_at", "favorite_type", "favorite_price") VALUES (1, '2010-12-29 03:03:33.557360', 48, '2010-12-29 03:03:33.557360', 'V', 34.0)
+  [1m[36mAREL (0.0ms)[0m  [1mINSERT INTO "customers" ("favorite_number", "updated_at", "tile_id", "created_at", "favorite_type", "favorite_price") VALUES (4, '2010-12-29 03:03:33.560360', 48, '2010-12-29 03:03:33.560360', 'C,V', 37.0)[0m
+Completed 200 OK in 168ms (Views: 12.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/kill" for 127.0.0.1 at Tue Dec 28 19:03:35 -0800 2010
+  Processing by GameController#kill as HTML
+  Parameters: {"uuid"=>"WDVINKBJTAILYITC"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1
+  [1m[36mGame Load (1.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 11) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "tiles" SET "updated_at" = '2010-12-29 03:03:36.017501', "zombies" = 0 WHERE ("tiles"."id" = 48)
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "turns_remaining" = 19, "can_act" = 'f', "updated_at" = '2010-12-29 03:03:36.077504', "kills" = 1 WHERE ("players"."id" = 57)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "updated_at" = '2010-12-29 03:03:36.087505', "can_move" = 't' WHERE ("players"."id" = 56)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)[0m
+  [1m[35mTile Load (0.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 47)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "x" = 10, "can_act" = 't', "updated_at" = '2010-12-29 03:03:36.159509', "can_move" = 'f', "prev_x" = 9 WHERE ("players"."id" = 56)
+  [1m[36mTile Load (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mGameBoard Load (1.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 10) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "turns_remaining" = 18, "can_act" = 'f', "updated_at" = '2010-12-29 03:03:36.197511', "kills" = 2 WHERE ("players"."id" = 56)
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mAREL (1.0ms)[0m  [1mUPDATE "players" SET "updated_at" = '2010-12-29 03:03:36.212512', "can_move" = 't' WHERE ("players"."id" = 57)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)
+Completed 200 OK in 330ms (Views: 12.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/get_turn/WDVINKBJTAILYITC" for 127.0.0.1 at Tue Dec 28 19:03:36 -0800 2010
+  Processing by GameController#get_turn as HTML
+  Parameters: {"uuid"=>"WDVINKBJTAILYITC"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 11.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/get_game_state/WDVINKBJTAILYITC" for 127.0.0.1 at Tue Dec 28 19:03:36 -0800 2010
+  Processing by GameController#get_game_state as HTML
+  Parameters: {"uuid"=>"WDVINKBJTAILYITC"}
+  [1m[35mPlayer Load (1.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1
+  [1m[36mGame Load (0.0ms)[0m  [1mSELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1[0m
+  [1m[35mGameBoard Load (0.0ms)[0m  SELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 47)[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)
+Completed 200 OK in 169ms (Views: 102.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/move" for 127.0.0.1 at Tue Dec 28 19:03:37 -0800 2010
+  Processing by GameController#post_make_move as HTML
+  Parameters: {"x"=>"10", "y"=>"11", "uuid"=>"WDVINKBJTAILYITC"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1[0m
+  [1m[35mGame Load (0.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1
+  [1m[36mPlayer Load (1.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  UPDATE "players" SET "prev_y" = 11, "can_act" = 't', "updated_at" = '2010-12-29 03:03:38.105620', "can_move" = 'f' WHERE ("players"."id" = 57)
+  [1m[36mTile Load (1.0ms)[0m  [1mSELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 11) LIMIT 1[0m
+  [1m[35mCustomer Load (0.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)
+Completed 200 OK in 156ms (Views: 12.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/sell" for 127.0.0.1 at Tue Dec 28 19:03:40 -0800 2010
+  Processing by GameController#sell as HTML
+  Parameters: {"number"=>"1", "uuid"=>"WDVINKBJTAILYITC", "customer_id"=>"58", "flavors"=>"C,V"}
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."uuid" = 'WDVINKBJTAILYITC') LIMIT 1[0m
+  [1m[35mGame Load (1.0ms)[0m  SELECT "games".* FROM "games" WHERE ("games"."id" = 29) LIMIT 1
+  [1m[36mPlayer Load (0.0ms)[0m  [1mSELECT "players".* FROM "players" WHERE ("players"."id" = 56) LIMIT 1[0m
+  [1m[35mPlayer Load (0.0ms)[0m  SELECT "players".* FROM "players" WHERE ("players"."id" = 57) LIMIT 1
+  [1m[36mGameBoard Load (0.0ms)[0m  [1mSELECT "game_boards".* FROM "game_boards" WHERE ("game_boards".game_id = 29) LIMIT 1[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30) AND ("tiles"."x" = 10) AND ("tiles"."y" = 11) LIMIT 1
+  [1m[36mCustomer Load (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48) AND ("customers"."id" = 58) LIMIT 1[0m
+  [1m[35mAREL (1.0ms)[0m  DELETE FROM "customers" WHERE ("customers"."id" = 58)
+  [1m[36mAREL (2.0ms)[0m  [1mUPDATE "players" SET "chocolate" = 4, "vanilla" = 4, "can_act" = 'f', "turns_remaining" = 18, "money" = 42.0, "sales" = 1, "updated_at" = '2010-12-29 03:03:41.153794' WHERE ("players"."id" = 57)[0m
+  [1m[35mAREL (2.0ms)[0m  UPDATE "players" SET "can_move" = 't', "updated_at" = '2010-12-29 03:03:41.164795' WHERE ("players"."id" = 56)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)[0m
+  [1m[35mTile Load (1.0ms)[0m  SELECT "tiles".* FROM "tiles" WHERE ("tiles".game_board_id = 30)
+  [1m[36mCustomer Load (1.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 46)[0m
+  [1m[35mCustomer Load (1.0ms)[0m  SELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 47)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE ("customers".tile_id = 48)[0m
+  [1m[35mAREL (0.0ms)[0m  UPDATE "players" SET "can_act" = 't', "can_move" = 'f', "y" = 11, "prev_x" = 10, "updated_at" = '2010-12-29 03:03:41.215798' WHERE ("players"."id" = 56)
+Completed   in 263ms
+
+NoMethodError (undefined method `to_hash' for nil:NilClass):
+  app/controllers/game_controller.rb:19:in `play_ai_turns'
+  app/controllers/game_controller.rb:134:in `sell'
+
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.0ms)
+Rendered c:/Ruby/lib/ruby/gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.0ms)
