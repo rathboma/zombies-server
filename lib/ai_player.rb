@@ -36,12 +36,17 @@ module AIPlayer
 		def choose_move
 			if @player.inventory_low?
 				move_towards_store
+			elsif player_tile.zombies <= 1 && player_tile.customers.size > 0
+				hold_position
 			else
-				unoccupied_neighbors = get_neighbors(:unoccupied)
 				occupied_neighbors = get_neighbors(:occupied)
 				move = make_dick_move(occupied_neighbors) unless occupied_neighbors.empty?
 				move ||= move_towards_frontier 
 			end
+		end
+
+		def hold_position
+			player_tile
 		end
 
 		def move_towards_store
@@ -109,10 +114,10 @@ module AIPlayer
 			choice
 		end
 
-		def take_action!(data)
-			tilestate = JSON.parse(data)
+		def take_action!(tilehash, player)
+			#Currently ignores the player state, should use player to create a new playerstate. meh
 			prev = get_tile(@player.prev_location)
-			curr = Tile.new(tilestate, @board)
+			curr = Tile.new(tilehash, @board)
 			if curr.zombies > 0
 				kill_zombies
 			elsif curr.customers.size > 0
@@ -124,6 +129,10 @@ module AIPlayer
 			else
 				do_nothing
 			end
+		end
+
+		def do_nothing
+			kill_zombies
 		end
 
 		def kill_zombies
@@ -149,10 +158,6 @@ module AIPlayer
 			, :number => purchase.number	}
 		end
 
-		def do_nothing
-			kill_zombies
-		end
-
 		def choose_best_sale(tile, inv)
 			options = tile.customers.collect{|c| c.find_sale(inv)}
 			options.max{|i,j| i.score <=> j.score}
@@ -169,8 +174,7 @@ module AIPlayer
 		def initialize(boardobj, client)
 			@client = client
 			@stores = []
-			@dimensions =	{ :x => boardobj.x	\
-							, :y => boardobj.y	}
+			@dimensions = {:x => boardobj.x, :y => boardobj.y}
 			@tiles = boardobj.tiles.collect{|t| Tile.new(t, self)}
 		end
 
@@ -199,8 +203,7 @@ module AIPlayer
 	class Tile
 		attr_accessor :board, :x, :y, :zombies, :customers, :visible, :store
 
-		def initialize(tileobj, board, visible = true)
-			hashdata = tileobj.to_hash
+		def initialize(hashdata, board, visible = true)
 			@board = board
 			@visible = visible
 			@x = hashdata[:x]
@@ -248,16 +251,14 @@ module AIPlayer
 		def initialize(hashdata, tile)
 			@tile = tile
 			@id = hashdata[:id]
-			@favorite = { :flavor => hashdata[:favorite_type]	\
-						, :price => hashdata[:favorite_price]	\
-						, :number => hashdata[:favorite_number]	}
+			@favorite = { :flavor	=>	hashdata[:favorite_type]	\
+						, :price	=>	hashdata[:favorite_price]	\
+						, :number	=>	hashdata[:favorite_number]	}
 		end
 
 		def base_prices; @tile.base_prices end
-
-		def find_sale(inv)
-			Sale.new(@favorite, base_prices, inv, self)
-		end
+		def find_sale(inv); Sale.new(@favorite, base_prices, inv, self) end
+		def sink?; @favorite[:number] == -1 end
 	end
 
 	class Plr
@@ -270,18 +271,18 @@ module AIPlayer
 											, :s => hashdata[:strawberry]	} : {}
 			@prev_location =	{:x => hashdata[:prev_x],	:y => hashdata[:prev_y]}
 			@location = 		{:x => hashdata[:x],		:y => hashdata[:y]}
+			@turns_remaining =	hashdata[:turns_remaining]
 			@score =	hashdata[:score]
 			@money =	hashdata[:money]
 			@kills =	hashdata[:kills]
 			@sales =	hashdata[:sales]
 			@can_act =	hashdata[:can_act]
 			@can_move =	hashdata[:can_move]
-			@turns_remaining = hashdata[:turns_remaining]
 		end
 
 		def inventory_low?
 			v, c, s = @inventory[:v], @inventory[:c], @inventory[:s]
-			[v,c,s].max < 4 || v+c+s < 10
+			[v,c,s].max < 3 || v+c+s < 9
 		end
 	end
 
@@ -299,7 +300,7 @@ module AIPlayer
 			bases.each{|k,v| options[k] = {:price => v, :number => 1}}
 
 			hunger = fav[:number]
-			if hunger >= 1
+			if hunger >= 1 || hunger == -1 # || @customer.sink?
 				ingredients = fav[:flavor].split ","
 				unspent = [inv[:c],	inv[:s],	inv[:v]]
 				flv_idx = ["C",		"S",		"V"]
@@ -312,6 +313,7 @@ module AIPlayer
 					when "S" ; 1
 					when "V" ; 2
 					end
+
 					break if unspent[flv_idx.index(flavor)] < 1
 					unspent[flv_idx.index(flavor)] -= 1
 					if ingredients.empty?
@@ -332,6 +334,10 @@ module AIPlayer
 			@price = best[:price]
 			best
 		end
+
+		def score
+			@number * @price
+		end
 	end
 
 	class Purchase
@@ -346,7 +352,3 @@ module AIPlayer
 		def total_cost; @number*@cost end
 	end
 end
-
-###
-
-AIPlayer::Client.new(true) if $0 == __FILE__
