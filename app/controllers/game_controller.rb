@@ -15,9 +15,10 @@ class GameController < ApplicationController
       aiPlayer = game.current_player
       ai = AIPlayer::Client.new
       move = ai.make_move!(JsonGame.new(aiPlayer, game.game_board, game.other_player(aiPlayer), game.game_over?, game.won?(aiPlayer)))
+      puts "AI MAKING THE MOVE: #{move.inspect}"
       tile = game.move(aiPlayer, move[:x], move[:y])
       act = ai.take_action!({:tile => tile.to_hash, :player => aiPlayer.to_hash}.to_json)
-      puts "AI MAKING A MOVE: #{act.inspect}"
+      puts "AI TAKING THE ACTION: #{act.inspect}"
       if act[:action] == :kill
         game.kill(aiPlayer)
       elsif act[:action] == :sell
@@ -25,7 +26,7 @@ class GameController < ApplicationController
       elsif act[:action] == :buy
         game.buy(aiPlayer, act[:flavor], act[:number].to_i.abs)
       elsif act[:action] == :run
-        #nothing yet
+        game.kill(aiPlayer) # Lol kill instead of run. whatever
       end
     end
   end

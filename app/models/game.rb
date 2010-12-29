@@ -80,17 +80,17 @@ class Game < ActiveRecord::Base
     x = x.to_i
     y = y.to_i
     unless x < game_board.x && x >= 0 && y >= 0 && y < game_board.y
-      @error = "co-ordinates not on the game board"
+      puts @error = "co-ordinates not on the game board"
       return nil
     end
 
     unless player.can_move?
-      @error = "it is not this players turn to move"
+      puts @error = "it is not this players turn to move"
       return nil
     end
 
     if (player.x - x ).abs + (player.y - y).abs > 1
-      @error = "you can only move one tile at a time"
+      puts @error = "you can only move one tile at a time"
       return nil
     end
 
